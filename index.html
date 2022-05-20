@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>CodePen - Vue live search</title>
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css'>
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css'><link rel="stylesheet" href="./style.css">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<div id = "app">
+  <div class = "statewrapper">
+  <div class ="container">
+    <div class ="row staterow">
+        <div class = "col-12 row d-flex align-items-center flex-column">
+              <h1>State Capital Finder</h1>
+              <button @click="openOverLay" class = 'btn mybut'>
+                
+                Search for a state
+            </button>
+        </div>
+    </div>
+  </div>
+  </div>
+<!--   <div class="test"  >{{open_or_close}}</div> -->
+
+  <div v-if ="showOverLay" class = 'overlay' @click="closeOverLay">
+      <div class="search-overlay__top">
+              <div class="container">
+                <i class="fa fa-search search-overlay__icon" aria-hidden="true"></i>
+                <input v-on:keyup = 'handleInput($event)' type="text" ref="searchInput" class="search-term" placeholder="What are you looking for?" id="search-term">
+                <i @click = 'closeOverLay' class="fa fa-window-close search-overlay__close" aria-hidden="true"></i>
+              </div>
+        </div>
+       
+      <div class = 'container'>
+         <div v-if ='showspinner'>
+          <div class = 'spinner-loader'></div>
+        </div>
+        <div class = 'row'>
+          <div  class = 'col-md-4' v-for="state in results">
+              
+            <div class="card card-body mt-3">
+          
+                <h4>{{state.name}} {{state.abbr}} <span class="text-primary">{{state.capital}}</span></h4>
+                <small>Lat: {{state.lat}} / Long: {{state.long}}</small>
+            </div>
+              
+          </div>
+        </div>
+        
+        </div>
+<!-- partial -->
+  <script src='https://unpkg.com/vue@next'></script><script  src="./script.js"></script>
+
+</body>
+</html>
